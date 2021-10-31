@@ -179,38 +179,13 @@
                 </div>
             </div>
             <div class="row">
+                {% for cat in categories %}
                 <div class="col-md-3 ftco-animate">
                     <ul class="category">
-                        <li><a href="#">Web Development <span class="number" data-number="1000">0</span></a></li>
-                        <li><a href="#">Graphic Designer <span class="number" data-number="1000">0</span></a></li>
-                        <li><a href="#">Multimedia <span class="number" data-number="2000">0</span></a></li>
-                        <li><a href="#">Advertising <span class="number" data-number="900">0</span></a></li>
+                        <li><a href="#">{{ cat.title }} <span class="number" data-number="{{ cat.job_count }}">0</span></a></li>
                     </ul>
                 </div>
-                <div class="col-md-3 ftco-animate">
-                    <ul class="category">
-                        <li><a href="#">Education &amp; Training <span class="number" data-number="3500">0</span></a></li>
-                        <li><a href="#">English <span class="number" data-number="1560">0</span></a></li>
-                        <li><a href="#">Social Media <span class="number" data-number="1000">0</span></a></li>
-                        <li><a href="#">Writing <span class="number" data-number="2500">0</span></a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 ftco-animate">
-                    <ul class="category">
-                        <li><a href="#">PHP Programming <span class="number" data-number="5500">0</span></a></li>
-                        <li><a href="#">Project Management <span class="number" data-number="2000">0</span></a></li>
-                        <li><a href="#">Finance Management <span class="number" data-number="800">0</span></a></li>
-                        <li><a href="#">Office &amp; Admin <span class="number" data-number="7000">0</span></a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 ftco-animate">
-                    <ul class="category">
-                        <li><a href="#">Web Designer <span><span class="number" data-number="8000">0</span></span></a></li>
-                        <li><a href="#">Customer Service <span class="number" data-number="4000">0</span></a></li>
-                        <li><a href="#">Marketing &amp; Sales <span class="number" data-number="3300">0</span></a></li>
-                        <li><a href="#">Software Development <span class="number" data-number="1356">0</span></a></li>
-                    </ul>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -271,7 +246,11 @@
                                 {% endif %}
                             {% endfor %}
 
-                            <li><a href="#">&gt;</a></li>
+                            {% if page_obj.has_next %}
+                             <li><a href="?page={{ page_obj.next_page_number }}">&gt;</a></li>
+                            {% else %}
+                                <li><span class="disabled">&gt;</span></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -280,7 +259,7 @@
         </div>
     </section>
 
-    <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
+    <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url('{% static 'images/bg_1.jpg' %}');" data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-10">

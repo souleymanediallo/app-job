@@ -15,6 +15,9 @@ class Category(models.Model):
         self.slug = slugify(self.title)
         super(Category, self).save(*args, **kwargs)
 
+    def job_count(self):
+        return self.jobs.all().count() * 400
+
 
 class Job(models.Model):
     TYPE_CHOICES = (
