@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser
+from .models import CustomUser, Profile
+
 
 # https://docs.djangoproject.com/en/3.2/ref/forms/widgets/
 
@@ -19,3 +20,14 @@ class CustomUserForm(UserCreationForm):
             field.widget.attrs.update({'class': 'form-control'})
 
         self.fields['user_type'].widget.attrs.update({'class': 'form-check-input'})
+
+# TODO 128
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ('user',)
+
+        widgets = {
+            'birth_day': forms.DateInput(attrs={'type'})
+        }

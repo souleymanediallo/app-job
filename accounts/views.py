@@ -22,3 +22,4 @@ class UserRegisterView(SuccessMessageMixin, CreateView):
         user.save()
 
         return redirect(self.success_url)
+

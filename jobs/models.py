@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.conf import settings
+from ckeditor.fields import RichTextField
 
 
 # Create your models here.
@@ -32,7 +33,7 @@ class Job(models.Model):
     company = models.CharField(max_length=200)
     job_type = models.CharField(max_length=50, choices=TYPE_CHOICES, default=None)
     location = models.CharField(max_length=200, blank=False, default=None)
-    description = models.TextField(blank=False, default=None)
+    description = RichTextField(blank=False, default=None)
     employer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=None)
     employee = models.ManyToManyField(settings.AUTH_USER_MODEL, default=None, blank=True, related_name="job_employee")
     slug = models.SlugField(editable=False)

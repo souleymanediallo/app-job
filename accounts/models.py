@@ -1,9 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
-
+from django.db.models.signals import post_save
 
 # Create your models here.
-from django.db.models.signals import post_save
 
 
 class CustomUserManager(BaseUserManager):
@@ -51,11 +50,9 @@ class CustomUser(AbstractBaseUser):
         return self.email
 
     def has_perm(self, perm, obj=None):
-        # Simplest possible answer: Yes, always
         return True
 
     def has_module_perms(self, app_label):
-        # Simplest possible answer: Yes, always
         return True
 
 
