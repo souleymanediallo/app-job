@@ -253,19 +253,29 @@
                 {% endfor %}
             </div>
             <div class="row mt-5">
+                {% if is_paginated %}
                 <div class="col text-center">
                     <div class="block-27">
                         <ul>
-                            <li><a href="#">&lt;</a></li>
-                            <li class="active"><span>1</span></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
+                            {% if page_obj.has_previous %}
+                                <li><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
+                            {% else %}
+                                <li class="disabled"><span>&lt;</span></li>
+                            {% endif %}
+
+                            {% for num in paginator.page_range %}
+                                {% if page_obj.number == num %}
+                                <li class="active"><span>{{ num }}</span></li>
+                                {% else %}
+                                <li><a href="?page={{ num }}">{{ num }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+
                             <li><a href="#">&gt;</a></li>
                         </ul>
                     </div>
                 </div>
+                {% endif %}
             </div>
         </div>
     </section>

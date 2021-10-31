@@ -9,3 +9,4 @@ class HomeView(ListView):
     model = Job
     context_object_name = "jobs"
     template_name = "jobs/index.html"
+    paginate_by = 1
