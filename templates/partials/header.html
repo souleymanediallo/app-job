@@ -10,10 +10,39 @@
                 <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                <li class="nav-item cta mr-md-2"><a href="new-post.html" class="nav-link">Post a Job</a></li>
-                <li class="nav-item cta cta-colored"><a href="job-post.html" class="nav-link">Want a Job</a></li>
-
+                {% if user.is_authenticated and user.is_employer %}
+                    <!-- drop -->
+                    <!-- Example single danger button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger dropdown-toggle" style="height: 50px;" data-bs-toggle="dropdown" aria-expanded="false">
+                            Employeur
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'job-create' %}">Add Job</a></li>
+                            <li><a class="dropdown-item" href="#">My Jobs</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Déconnexion</a></li>
+                        </ul>
+                    </div>
+                    <!-- end drop -->
+                {% elif user.is_authenticated and user.is_employee %}
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Demandeur
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">My Jobs</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Update Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Déconnexion</a></li>
+                        </ul>
+                    </div>
+                {% else %}
+                <li class="nav-item cta mr-md-2"><a href="{% url 'register' %}" class="nav-link">Inscription</a></li>
+                <li class="nav-item cta cta-colored"><a href="{% url 'login' %}" class="nav-link">Connexion</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>

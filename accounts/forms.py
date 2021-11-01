@@ -22,12 +22,13 @@ class CustomUserForm(UserCreationForm):
         self.fields['user_type'].widget.attrs.update({'class': 'form-check-input'})
 
 # TODO 128
+# TODO 133
 
-class UserUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        exclude = ('user',)
-
-        widgets = {
-            'birth_day': forms.DateInput(attrs={'type'})
-        }
+# class UserUpdateForm(forms.ModelForm):
+#     class Meta:
+#         model = Profile
+#         exclude = ('user',)
+#
+#         widgets = {
+#             'birth_day': forms.DateInput(attrs={'type'})
+#         }
