@@ -22,6 +22,16 @@
           <div class="col-md-8 ftco-animate">
             <h2 class="mb-3">{{ job.title }}</h2>
             <p>{{ job.description }}</p>
+              {% if user.is_employee %}
+                  <form action="" method="POST">
+                    <div class="form-group">
+                        <input type="submit" value="Apply" class="btn btn-danger">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-danger">J'aime</button>
+                    </div>
+                  </form>
+              {% endif %}
             <div class="tag-widget post-tag-container mb-5 mt-5">
               <div class="tagcloud">
                 <a href="#" class="tag-cloud-link">Life</a>

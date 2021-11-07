@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 from .models import CustomUser
 from .forms import CustomUserForm
 
@@ -23,3 +23,6 @@ class UserRegisterView(SuccessMessageMixin, CreateView):
 
         return redirect(self.success_url)
 
+
+class ProfileView(TemplateView):
+    template_name = "accounts/profile.html"

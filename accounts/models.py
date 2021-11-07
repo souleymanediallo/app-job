@@ -64,6 +64,9 @@ class Profile(models.Model):
     resume = models.TextField(blank=True)
     company = models.CharField(max_length=250, blank=True)
 
+    def __str__(self):
+        return self.user.email
+
 
 def post_save_receiver(sender, instance, created, **kwargs):
     if created:

@@ -11,3 +11,14 @@ class JobFormCreate(forms.ModelForm):
         super(JobFormCreate, self).__init__(*args, **kwargs)
         for name, field in self.fields.items():
             field.widget.attrs.update({"class": "form-control"})
+
+
+class JobFormUpdate(forms.ModelForm):
+    class Meta:
+        model = Job
+        fields = ["title", "category", "company", "job_type", "location", "description"]
+
+        def __init__(self, *args, **kwargs):
+            super(JobFormUpdate, self).__init__(*args, **kwargs)
+            for name, field in self.fields.items():
+                field.widget.attrs.update({"class": "form-control"})

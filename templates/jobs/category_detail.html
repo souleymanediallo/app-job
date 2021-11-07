@@ -26,13 +26,13 @@
                                 <div class="tab-content p-4" id="v-pills-tabContent">
 
                                     <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-                                        <form action="{% url 'search' %}" method="GET" class="search-job">
+                                        <form action="#" class="search-job">
                                             <div class="row">
                                                 <div class="col-md">
                                                     <div class="form-group">
                                                         <div class="form-field">
                                                             <div class="icon"><span class="icon-briefcase"></span></div>
-                                                            <input type="text" name="job_title" class="form-control" placeholder="eg. Garphic. Web Developer">
+                                                            <input type="text" class="form-control" placeholder="eg. Garphic. Web Developer">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -41,7 +41,7 @@
                                                         <div class="form-field">
                                                             <div class="select-wrap">
                                                                 <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                                <select name="job_type" id="" class="form-control">
+                                                                <select name="" id="" class="form-control">
                                                                     <option value="">Category</option>
                                                                     <option value="">Full Time</option>
                                                                     <option value="">Part Time</option>
@@ -57,7 +57,7 @@
                                                     <div class="form-group">
                                                         <div class="form-field">
                                                             <div class="icon"><span class="icon-map-marker"></span></div>
-                                                            <input type="text" name="job_location" class="form-control" placeholder="Location">
+                                                            <input type="text" class="form-control" placeholder="Location">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -174,17 +174,17 @@
         <div class="container">
             <div class="row justify-content-center mb-5 pb-3">
                 <div class="col-md-7 heading-section text-center ftco-animate">
-                    <span class="subheading">Categories work wating for you</span>
+                    <span class="subheading">Categorie : {{ category.title }}</span>
                     <h2 class="mb-4"><span>Current</span> Job Posts</h2>
                 </div>
             </div>
             <div class="row">
                 {% for cat in categories %}
-                <div class="col-md-3 ftco-animate">
-                    <ul class="category">
-                        <li><a href="{% url 'category-detail' slug=cat.slug pk=cat.id %}">{{ cat.title }} <span class="number" data-number="{{ cat.job_count }}">0</span></a></li>
-                    </ul>
-                </div>
+                    <div class="col-md-3 ftco-animate">
+                        <ul class="category">
+                            <li><a href="#">{{ cat.title }} <span class="number" data-number="{{ cat.job_count }}">0</span></a></li>
+                        </ul>
+                    </div>
                 {% endfor %}
             </div>
         </div>
@@ -200,60 +200,60 @@
             </div>
             <div class="row">
                 {% for job in jobs %}
-                <div class="col-md-12 ftco-animate">
+                    <div class="col-md-12 ftco-animate">
 
-                    <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
+                        <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
 
-                        <div class="mb-4 mb-md-0 mr-5">
-                            <div class="job-post-item-header d-flex align-items-center">
-                                <h2 class="mr-3 text-black h3">{{ job.title}}</h2>
-                                <div class="badge-wrap">
-                                    <span class="bg-primary text-white badge py-2 px-3">{{ job.job_type }}</span>
+                            <div class="mb-4 mb-md-0 mr-5">
+                                <div class="job-post-item-header d-flex align-items-center">
+                                    <h2 class="mr-3 text-black h3">{{ job.title}}</h2>
+                                    <div class="badge-wrap">
+                                        <span class="bg-primary text-white badge py-2 px-3">{{ job.job_type }}</span>
+                                    </div>
+                                </div>
+                                <div class="job-post-item-body d-block d-md-flex">
+                                    <div class="mr-3"><span class="icon-layers"></span> <a href="#">{{ job.company }}</a></div>
+                                    <div><span class="icon-my_location"></span> <span>{{ job.location }}</span></div>
                                 </div>
                             </div>
-                            <div class="job-post-item-body d-block d-md-flex">
-                                <div class="mr-3"><span class="icon-layers"></span> <a href="#">{{ job.company }}</a></div>
-                                <div><span class="icon-my_location"></span> <span>{{ job.location }}</span></div>
+
+                            <div class="ml-auto d-flex">
+                                <a href="{% url "job-detail" slug=job.slug pk=job.id %}" class="btn btn-primary py-2 mr-1">Apply Job</a>
+                                <a href="#" class="btn btn-secondary rounded-circle btn-favorite d-flex align-items-center icon">
+                                    <span class="icon-heart"></span>
+                                </a>
                             </div>
                         </div>
-
-                        <div class="ml-auto d-flex">
-                            <a href="{% url "job-detail" slug=job.slug pk=job.id %}" class="btn btn-primary py-2 mr-1">Apply Job</a>
-                            <a href="#" class="btn btn-secondary rounded-circle btn-favorite d-flex align-items-center icon">
-                                <span class="icon-heart"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div><!-- end -->
+                    </div><!-- end -->
                 {% endfor %}
             </div>
             <div class="row mt-5">
                 {% if is_paginated %}
-                <div class="col text-center">
-                    <div class="block-27">
-                        <ul>
-                            {% if page_obj.has_previous %}
-                                <li><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
-                            {% else %}
-                                <li class="disabled"><span>&lt;</span></li>
-                            {% endif %}
-
-                            {% for num in paginator.page_range %}
-                                {% if page_obj.number == num %}
-                                <li class="active"><span>{{ num }}</span></li>
+                    <div class="col text-center">
+                        <div class="block-27">
+                            <ul>
+                                {% if page_obj.has_previous %}
+                                    <li><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
                                 {% else %}
-                                <li><a href="?page={{ num }}">{{ num }}</a></li>
+                                    <li class="disabled"><span>&lt;</span></li>
                                 {% endif %}
-                            {% endfor %}
 
-                            {% if page_obj.has_next %}
-                             <li><a href="?page={{ page_obj.next_page_number }}">&gt;</a></li>
-                            {% else %}
-                                <li><span class="disabled">&gt;</span></li>
-                            {% endif %}
-                        </ul>
+                                {% for num in paginator.page_range %}
+                                    {% if page_obj.number == num %}
+                                        <li class="active"><span>{{ num }}</span></li>
+                                    {% else %}
+                                        <li><a href="?page={{ num }}">{{ num }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if page_obj.has_next %}
+                                    <li><a href="?page={{ page_obj.next_page_number }}">&gt;</a></li>
+                                {% else %}
+                                    <li><span class="disabled">&gt;</span></li>
+                                {% endif %}
+                            </ul>
+                        </div>
                     </div>
-                </div>
                 {% endif %}
             </div>
         </div>
