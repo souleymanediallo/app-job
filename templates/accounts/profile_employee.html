@@ -23,6 +23,16 @@
 
                 <div class="col-md-12 col-lg-8 mb-5">
                     <h2>Profile Home</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="mb-3">{{ account.first_name }}  {{ account.last_name }}</h2>
+                            <h5><img src="{{ profile.image.url }}"></h5>
+                            <h5>Email: {{ account.email }}</h5>
+                            <h5>Birth Day: {{ profile.birth_day }}</h5>
+                            <h5>Location: {{ profile.location }}</h5>
+                            <p>{{ profile.resume|safe }}</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-lg-4">

@@ -20,7 +20,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'job-create' %}">Add Job</a></li>
                             <li><a class="dropdown-item" href="#">My Jobs</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'profile-employee' pk=object.id %}">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{% url 'logout' %}">Déconnexion</a></li>
                         </ul>
@@ -33,7 +33,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">My Jobs</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'profile-employee' user.id %}">Profile</a></li>
                             <li><a class="dropdown-item" href="#">Update Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{% url 'logout' %}">Déconnexion</a></li>

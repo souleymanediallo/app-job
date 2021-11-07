@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.db.models.signals import post_save
-
+from jobs.models import Job
 # Create your models here.
 
 
@@ -74,3 +74,14 @@ def post_save_receiver(sender, instance, created, **kwargs):
 
 
 post_save.connect(post_save_receiver, sender=CustomUser)
+
+
+class Invite(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="invites")
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name="invites", default=1)
+    description = models.TextField(blank=True)
+    created = models.DateField(default=None, blank=True, null=True)
+    unread = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.user.email
